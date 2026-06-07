@@ -1,0 +1,90 @@
+interface LibraryUser {
+    void registerAccount();
+    void requestBook();
+}
+
+class KidUser implements LibraryUser {
+
+    private int age;
+    private String bookType;
+
+    public KidUser(int age, String bookType) {
+        this.age = age;
+        this.bookType = bookType;
+    }
+
+    @Override
+    public void registerAccount() {
+        if (age < 12) {
+            System.out.println("You have successfully registered under a Kids Account.");
+        } else {
+            System.out.println("Sorry, age must be less than 12 to register as a Kid User.");
+        }
+    }
+
+    @Override
+    public void requestBook() {
+        if (bookType.equalsIgnoreCase("Kids")) {
+            System.out.println("Book issued successfully. Please return it within 10 days.");
+        } else {
+            System.out.println("Oops! Kid users can only borrow Kids books.");
+        }
+    }
+}
+
+class AdultUser implements LibraryUser {
+
+    private int age;
+    private String bookType;
+
+    public AdultUser(int age, String bookType) {
+        this.age = age;
+        this.bookType = bookType;
+    }
+
+    @Override
+    public void registerAccount() {
+        if (age > 12) {
+            System.out.println("You have successfully registered under an Adult Account.");
+        } else {
+            System.out.println("Sorry, age must be greater than 12 to register as an Adult User.");
+        }
+    }
+
+    @Override
+    public void requestBook() {
+        if (bookType.equalsIgnoreCase("Fiction")) {
+            System.out.println("Book issued successfully. Please return it within 7 days.");
+        } else {
+            System.out.println("Oops! Adult users can only borrow Fiction books.");
+        }
+    }
+}
+
+public class LibraryInterfaceDemo {
+
+    public static void main(String[] args) {
+
+        KidUser kid1 = new KidUser(10, "Kids");
+        kid1.registerAccount();
+        kid1.requestBook();
+
+        System.out.println();
+
+        KidUser kid2 = new KidUser(18, "Fiction");
+        kid2.registerAccount();
+        kid2.requestBook();
+
+        System.out.println();
+
+        AdultUser adult1 = new AdultUser(5, "Kids");
+        adult1.registerAccount();
+        adult1.requestBook();
+
+        System.out.println();
+        
+        AdultUser adult2 = new AdultUser(23, "Fiction");
+        adult2.registerAccount();
+        adult2.requestBook();
+    }
+}
