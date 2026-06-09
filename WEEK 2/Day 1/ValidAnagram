@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.size() != t.size())
+            return false;
+        vector<int> out(26, 0);
+        for (char c : s) {
+            out[c - 'a']++;
+        }
+        for (char c : t) {
+            out[c - 'a']--;
+        }
+        for (int i : out) {
+            if (i != 0)
+                return false;
+        }
+        return true;
+    }
+};
